@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/stylelogin.css">
+    <title>Registro</title>
+</head>
+<body>
+    <div class="register-form">
+        <h2>Formulario de Registro</h2>
+        <form action="/register" method="POST" onsubmit="return validateForm()">
+            <label for="user">Nombre de Usuario</label>
+            <input type="text" name="user" required tabindex="1" autofocus>
+            <label for="email">Correo Electrónico</label>
+            <input type="email" name="email" id="email" required tabindex="2">
+            <span id="email-error" style="display: none; color: red;">Por favor, ingrese un correo electrónico válido.</span>
+            <label for="torre">Torre</label>
+            <input type="text" name="torre" required tabindex="3">
+            <label for="apartamento">Apartamento</label>
+            <input type="text" name="apartamento" required tabindex="4">
+            <label for="tipo">Tipo de Residencia</label>
+            <select id="tipo" name="tipo" required tabindex="5">
+                <option value="">Seleccione una opción</option>
+                <option value="arrendatario">Arrendatario</option>
+                <option value="propietario">Propietario</option>
+            </select>
+            <label for="name">Nombre Completo</label>
+            <input type="text" name="name" id="name" required tabindex="6">
+            <label for="pass">Contraseña</label>
+            <input type="password" name="pass" id="pass" required tabindex="7">
+            <label for="confirm-pass">Confirmar Contraseña</label>
+            <input type="password" name="confirm-pass" id="confirm-pass" required tabindex="8">
+            <span id="pass-error" style="display: none; color: red;">Las contraseñas no coinciden.</span>
+            <div style="display: inline;">             
+                <a href="/" class="btn-cancel">Cancel</a><input type="submit" class="btn-save" value="Save">           
+            </div>
+        </form>     
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <% if (typeof alert != "undefined")  { %>
+    <script>
+        Swal.fire({
+            title:'<%= alertTitle %>',
+            text:'<%= alertMessage %>',
+            icon:'<%= alertIcon %>',
+            showConfirmButton: <%= showConfirmButton %>,
+            timer: <%= timer %>
+        }).then(()=>{
+            window.location='/<%= ruta %>'
+        })
+    </script>
+    <% } %>
+    <script>
+    function validateForm() {
+        var email = document.getElementById('email').value;
+        var emailError = document.getElementById('email-error');
+        var pass = document.getElementById('pass').value;
+        var confirmPass = document.getElementById('confirm-pass').value;
+        var passError = document.getElementById('pass-error');
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!regex.test(email)) {
+            emailError.style.display = 'block';
+            return false;
+        } else {
+            emailError.style.display = 'none';
+        }
+        
+        if (pass !== confirmPass) {
+            passError.style.display = 'block';
+            return false;
+        } else {
+            passError.style.display = 'none';
+        }
+        
+        return true;
+    }
+    </script>
+</body>
+</html>
