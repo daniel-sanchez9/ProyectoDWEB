@@ -2,9 +2,9 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
     //Con variables de entorno
-    host     : 'localhost',
+    host     : '127.0.0.1',
     user     : 'daniel',
-    password : 'admin',
+    password : 'asd123',
     database : 'login_node_curso'
 });
 

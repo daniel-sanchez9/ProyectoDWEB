@@ -392,6 +392,24 @@ app.get('/reserva_bbq', (req, res) => {
     }
 });
 
+
+// Ruta para Reserva_salon
+app.get('/reserva_salon_social', (req, res) => {
+    if (req.session.loggedin) {
+        res.render('Reserva_salon_social', {
+            login: true,
+            name: req.session.name
+        });
+    } else {
+        res.render('Reserva_salon_social', {
+            login: false,
+            name: ''
+        });
+    }
+});
+
+
+
 // Función para limpiar la caché luego del logout
 app.use(function (req, res, next) {
     if (!req.user)

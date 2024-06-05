@@ -16,7 +16,7 @@ const sendVerificationEmail = (email, token) => {
         to: email,
         subject: 'Verificación de cuenta',
         text: `Por favor, verifica tu cuenta haciendo clic en el siguiente enlace: 
-        http://localhost:3000/verify-email?token=${token}`
+        http://18.118.253.63:3000/verify-email?token=${token}`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
